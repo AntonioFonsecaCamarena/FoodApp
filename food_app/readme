@@ -1,0 +1,64 @@
+Author: Jose Antonio Fonseca Camarena
+
+
+*** DATABASE **********************************************************************************************
+
+Installation
+POSTGRES version 13 : https://hub.docker.com/_/postgres
+    Command: $docker pull postgres:13
+
+Start instance
+    run: $docker run --name  food_app_db -e POSTGRES_PASSWORD=F00dApp -d -p 5432:5432 postgres:13
+
+Enter instance
+exec:   $docker exec -it food_app_db bash
+            docker run --name food_app_db -e POSTGRES_PASSWORD=F00dApp -d -p 5432:5432 postgres:13
+            docker exec -it food_app_db bash
+                #psql -U postgres
+
+
+                    # CREATE DATABASE food_app_db;
+                    # \c food_app_db
+                    # \l
+                                                    List of databases
+                        Name     |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges
+                    -------------+----------+----------+------------+------------+-----------------------
+                    food_app_db | postgres | UTF8     | en_US.utf8 | en_US.utf8 |
+                    postgres    | postgres | UTF8     | en_US.utf8 | en_US.utf8 |
+                    template0   | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+                                |          |          |            |            | postgres=CTc/postgres
+                    template1   | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+                                |          |          |            |            | postgres=CTc/postgres
+                    (4 rows)
+
+                    #create user foodAppUser superuser password 'f00d4pp';        
+                    #docker exec -it food_app_db psql -U foodappuser food_app_db
+
+
+Edit pg_hba.conf
+
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
+
+# "local" is for Unix domain socket connections only
+local   all             postgres                                trust
+local   all             foodAppUser                             md5
+
+EXEC:   $docker cp food_app_db:/var/lib/postgresql/data/pg_hba.conf .
+        $docker cp .\pg_hba.conf food_app_db:/var/lib/postgresql/data/pg_hba_conf
+        $docker restart food_app_db
+
+
+
+Docker PostgreSQL with Persistent Data
+docker run -p 5432:5432 -d -e POSTGRES_PASSWORD=f00d4pp -e POSTGRES_USER=postgres -e POSTGRES_DB=food_app_db -v pgdata:/var/lib/postgresql/data postgres
+
+psql stripe-example -h localhost -U postgres
+
+docker exec -it 9719 psql -U postgres food_app_db
+
+
+
+
+
+docker run -p 5432:5432 -d --name foodappdbimg -e POSTGRES_PASSWORD=f00d4pp -e POSTGRES_USER=postgres -e POSTGRES_DB=food_app_db -v pgdata:/var/lib/postgresql/data postgres
+
