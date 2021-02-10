@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface  MenuCategoryRepository  extends CrudRepository<MenuCategory, Long>{
-    
+
 }

@@ -6,9 +6,22 @@ Author: Jose Antonio Fonseca Camarena
 Installation
 POSTGRES version 13 : https://hub.docker.com/_/postgres
     Command: $docker pull postgres:13
+    docker run -p 5432:5432 -d --name foodappdbImg -e POSTGRES_PASSWORD=foodapppsw -e POSTGRES_USER=postgres -e POSTGRES_DB=foodappdb -e POSTGRES_HOST_AUTH_METHOD=trust -v pgdata:/var/lib/postgresql/data postgres
 
-Start instance
-    run: $docker run --name  food_app_db -e POSTGRES_PASSWORD=F00dApp -d -p 5432:5432 postgres:13
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Enter instance
 exec:   $docker exec -it food_app_db bash
@@ -60,5 +73,23 @@ docker exec -it 9719 psql -U postgres food_app_db
 
 
 
-docker run -p 5432:5432 -d --name foodappdbimg -e POSTGRES_PASSWORD=f00d4pp -e POSTGRES_USER=postgres -e POSTGRES_DB=food_app_db -v pgdata:/var/lib/postgresql/data postgres
 
+
+
+
+
+------------------------------
+PS E:\Proyectos\CUCEI\Servicio Social\FoodApp\food_app> docker-compose down --volumes
+Removing network food_app_default
+WARNING: Network food_app_default not found.
+PS E:\Proyectos\CUCEI\Servicio Social\FoodApp\food_app> docker volume ls
+DRIVER    VOLUME NAME
+local     pgdata
+PS E:\Proyectos\CUCEI\Servicio Social\FoodApp\food_app> docker volume prune
+WARNING! This will remove all local volumes not used by at least one container.
+Are you sure you want to continue? [y/N] y
+Total reclaimed space: 0B
+PS E:\Proyectos\CUCEI\Servicio Social\FoodApp\food_app> docker volume ls   
+DRIVER    VOLUME NAME
+PS E:\Proyectos\CUCEI\Servicio Social\FoodApp\food_app>  docker run -p 5432:5432 -d --name foodappdbImg -e POSTGRES_PASSWORD=foodapppsw -e POSTGRES_USER=postgres -e POSTGRES_DB=foodappdb -e POSTGRES_HOST_AUTH_METHOD=trust -v pgdata:/var/lib/postgresql/data postgres
+bb1911c4218ac13bd53db9f22a5fe2bf343714d25c756064f45d6cb0069b6c6e

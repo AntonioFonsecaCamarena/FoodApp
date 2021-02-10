@@ -13,3 +13,9 @@ This is a WEB/Mobile based application designed to be deployed as multiple conta
  
  # Requirements
  To run this app please read the readme file with instructions inside the food_app folder.
+
+
+
+-- Installed NPM dependencies
+npm install bootstrap
+npm install axios

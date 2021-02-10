@@ -1,6 +1,33 @@
 version: '3.1'
 
 services:
+  foodappfrontend:
+    build:
+      context: ./foodappfrontend
+    ports:
+      - "3000:3000"
+    container_name: foodappfrontend
+    stdin_open: true
+    #depends_on:
+    #  - foodappbackend
+    volumes:
+       - ./foodappfrontend:/usr/src/app/foodappfrontend
+       - /usr/src/app/foodappfrontend/node_modules
+
+  foodappbackend:
+    build:
+      context: ./foodappbackend
+    container_name: foodappbackend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/foodappdb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=foodapppsw
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
   db:
     image: postgres
     restart: always
@@ -11,3 +38,6 @@ services:
       - POSTGRES_HOST_AUTH_METHOD=trust
     ports: 
       - 5432:5432 
+    volumes:
+      - ./db-data:/var/lib/postgresql/data
+  
