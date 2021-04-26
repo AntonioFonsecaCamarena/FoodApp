@@ -11,12 +11,15 @@ import com.foodapp.foodapp.service.MenuCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "/menuCategory")
+@CrossOrigin(origins = "http://localhost:3000", methods= {RequestMethod.GET,RequestMethod.POST})
 public class MenuCategoryController {
 
   @Autowired
@@ -25,13 +28,19 @@ public class MenuCategoryController {
   @GetMapping(value = "/findMenuCategory")
   public ResponseEntity<Optional<MenuCategory>> find(long id) {
     Optional<MenuCategory> menuCategory = menuCategoryService.get(id);
-    return new ResponseEntity<Optional<MenuCategory>>(menuCategory, HttpStatus.OK);
+    if(!menuCategory.isEmpty())
+      return new ResponseEntity<Optional<MenuCategory>>(menuCategory, HttpStatus.OK);
+    else
+      return new ResponseEntity<Optional<MenuCategory>>(menuCategory, HttpStatus.NO_CONTENT);
   }
 
   @GetMapping(value = "/list")
   public ResponseEntity<List<MenuCategory>> list() {
     List<MenuCategory> menuCategorys = menuCategoryService.list();
-    return new ResponseEntity<List<MenuCategory>>(menuCategorys, HttpStatus.OK);
+    if(!menuCategorys.isEmpty())
+      return new ResponseEntity<List<MenuCategory>>(menuCategorys, HttpStatus.OK);
+    else  
+      return new ResponseEntity<List<MenuCategory>>(menuCategorys, HttpStatus.NO_CONTENT);
   }
 
   @GetMapping(value = "/addMenuCategory")

@@ -1,8 +1,5 @@
 package com.foodapp.foodapp;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.foodapp.foodapp.entity.MenuCategory;
 import com.foodapp.foodapp.entity.MenuItem;
 import com.foodapp.foodapp.entity.User;
@@ -32,6 +29,7 @@ public class FoodappApplication implements CommandLineRunner {
 	@Override
 	public void run (String... args) throws Exception {
 
+		
 		//Create and Save default Users
 		userRepo.save(new User(null, "Jose Antonio", "Fonseca Camarena", "tonybaang@gmail.com", "123456"));
 		userRepo.save(new User(null, "Mariana", "Ochoa", "mariocho@gmail.com", "123456"));
@@ -40,30 +38,23 @@ public class FoodappApplication implements CommandLineRunner {
 		userRepo.save(new User(null, "Britney", "Spears", "b.spears@hotmail.com", "oopsIdiditagain"));
 
 		//Create and Save  default Category Menus
-		List<MenuItem> ensaladasItems = new ArrayList<MenuItem>();
-		ensaladasItems.add(menuItemRepo.save(new MenuItem(null, "Ensalada Caesar", "Ensalada con lechuga, tomate y pollo a la plancha.", 90, null)));
-		ensaladasItems.add(menuItemRepo.save(new MenuItem(null, "Ensalada Griega", "Si eres fan de las ensaladas saludables y también te encanta la pasta, no dejes pasar esta ensalada griega con pasta.", 95, null)));
-		ensaladasItems.add(menuItemRepo.save(new MenuItem(null, "Ensalada Quinoa", "Las ensaladas son platillos ideales, pues pueden componerse de diversos ingredientes y prepararse de muchas maneras.", 100, null)));
-		menuCategoryRepo.save(new MenuCategory(null, "Ensaladas", "Sigue tu dieta con las mejores ensaladas.", ensaladasItems ));
+		MenuCategory grill     = menuCategoryRepo.save(new MenuCategory("Grill", "Sacia ese carnivoro que vive en ti."));
+		MenuCategory ensaladas = menuCategoryRepo.save(new MenuCategory("Ensaladas", "Sigue tu dieta con las mejores ensaladas."));
+		MenuCategory bebidas   = menuCategoryRepo.save(new MenuCategory("Bebidas", "Aguas, refrescos y mas para saciar tu sed."));
+		MenuCategory postres   = menuCategoryRepo.save(new MenuCategory("Postres", "Para complementar tu rica comida con un gustito."));
 
-		
-		List<MenuItem> bebidasItems = new ArrayList<MenuItem>();
-		bebidasItems.add(menuItemRepo.save(new MenuItem(null, "Coca Cola 355ml", "Refresco en botella de vidrio frio o al tiempo.", 25, null)));
-		bebidasItems.add(menuItemRepo.save(new MenuItem(null, "Pepsi 355ml", "Refresco en botella de vidrio frio o al tiempo.", 25, null)));
-		bebidasItems.add(menuItemRepo.save(new MenuItem(null, "Agua de Orchata", "Agua de orchata hecha al dia azucarada.", 25, null)));
-		menuCategoryRepo.save(new MenuCategory(null, "Bebidas", "Aguas, refrescos y mas para saciar tu sed.", bebidasItems));
-
-		List<MenuItem> postresItems = new ArrayList<MenuItem>();
-		postresItems.add(menuItemRepo.save(new MenuItem(null, "Pay de Queso", "Delicioso Pay hecho al dia.", 25, null)));
-		postresItems.add(menuItemRepo.save(new MenuItem(null, "Jericalla", "Tradicional Jericalla hecha por nosotros al dia.", 25, null)));
-		menuCategoryRepo.save(new MenuCategory(null, "Postres", "Para complementar tu rica comida con un gustito.", postresItems));
-
-		List<MenuItem> grillItems   = new ArrayList<MenuItem>();
-		grillItems.add(menuItemRepo.save(new MenuItem(null, "Beef Steack 350gr", "Corte asado al carbon acompañado de 2 guarniciones.", 120, null)));
-		grillItems.add(menuItemRepo.save(new MenuItem(null, "Orden Arrachera 350gr", "Corte asado al carbon acompañado de 2 guarniciones.", 145, null)));
-		grillItems.add(menuItemRepo.save(new MenuItem(null, "Choriquezo", "Chorizo azado a la parrilla acompañado de queso fundido.", 70, null)));
-		menuCategoryRepo.save(new MenuCategory(null, "Grill", "Sacia ese carnivoro que vive en ti.", grillItems));
-
+		//Create and Save default menu Items
+		menuItemRepo.save(new MenuItem("Ensalada Caesar", "Ensalada con lechuga, tomate y pollo a la plancha.", 90, ensaladas));
+		menuItemRepo.save(new MenuItem("Ensalada Griega", "Si eres fan de las ensaladas saludables y también te encanta la pasta, no dejes pasar esta ensalada griega con pasta.", 95, ensaladas));
+		menuItemRepo.save(new MenuItem("Ensalada Quinoa", "Las ensaladas son platillos ideales, pues pueden componerse de diversos ingredientes y prepararse de muchas maneras.", 100, ensaladas));
+		menuItemRepo.save(new MenuItem("Coca Cola 355ml", "Refresco en botella de vidrio frio o al tiempo.", 25, bebidas));
+		menuItemRepo.save(new MenuItem("Pepsi 355ml", "Refresco en botella de vidrio frio o al tiempo.", 25, bebidas));
+		menuItemRepo.save(new MenuItem("Agua de Orchata", "Agua de orchata hecha al dia azucarada.", 25, bebidas));
+	    menuItemRepo.save(new MenuItem("Pay de Queso", "Delicioso Pay hecho al dia.", 25, postres));
+		menuItemRepo.save(new MenuItem("Jericalla", "Tradicional Jericalla hecha por nosotros al dia.", 25, postres));
+		menuItemRepo.save(new MenuItem("Beef Steack 350gr", "Corte asado al carbon acompañado de 2 guarniciones.", 120, grill));
+		menuItemRepo.save(new MenuItem("Orden Arrachera 350gr", "Corte asado al carbon acompañado de 2 guarniciones.", 145, grill));
+		menuItemRepo.save(new MenuItem("Choriquezo", "Chorizo azado a la parrilla acompañado de queso fundido.", 70, grill));
 
 	}
 

@@ -4,23 +4,26 @@ const MENUITEM_URL = 'http://localhost:8080/menuItem/';
 
 class MenuItemService {
 
+    findById(id){
+       return axios.get(MENUITEM_URL+'findMenuItem', {
+            params: {
+                id: id
+            }
+        }).catch(error =>{
+            console.log(error + " - > The menu element: " + id + " is not found on the DB.")
+        });
+    }
+
     getMenuItems(){
-        console.log('_______________________');
-        console.log(axios.get(MENUITEM_URL+'list'));
         return axios.get(MENUITEM_URL+'list');
     }
 
     saveNewMenuItem(menuItemForm){
-        console.log('--->');
-        console.log(menuItemForm);
-        axios.post(MENUITEM_URL+'addMenuItem', menuItemForm)
+       axios.post(MENUITEM_URL+'addMenuItem', menuItemForm)
         .then(response =>{
-            console.log('____==___');
-            console.log(response);
-            alert('todo bueno');
+            alert('Saved');
         }).catch(error =>{
-            alert('todo malo :(');
-            console.log('____ERROR__');
+            alert('There was a problem, consult the logs');
             console.log(error)
         })
     }

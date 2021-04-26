@@ -27,6 +27,10 @@ public class MenuItemService {
         return list;
     }
 
+    public List<MenuItem> findByMenuCategory(Long menuCategoryId){
+        return repository.findByMenuCategoryId(menuCategoryId);
+    }
+
     public MenuItem create(MenuItem menuItem) {
         return repository.save(menuItem);
     }

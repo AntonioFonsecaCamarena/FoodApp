@@ -1,5 +1,6 @@
 package com.foodapp.foodapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -29,7 +30,10 @@ public class MenuItemController {
   @GetMapping(value = "/findMenuItem")
   public ResponseEntity<Optional<MenuItem>> find(long id) {
     Optional<MenuItem> menuItem = menuItemService.get(id);
-    return new ResponseEntity<Optional<MenuItem>>(menuItem, HttpStatus.OK);
+    if(!menuItem.isEmpty())
+      return new ResponseEntity<Optional<MenuItem>>(menuItem, HttpStatus.OK);
+    else
+      return new ResponseEntity<Optional<MenuItem>>(menuItem, HttpStatus.NO_CONTENT);
   }
 
   @GetMapping(value = "/list")
@@ -45,6 +49,17 @@ public class MenuItemController {
     return new ResponseEntity<>("MenuItem added!", HttpStatus.OK);}
     catch (Exception e){
       return new ResponseEntity<>(":(", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @GetMapping(value = "/findByMenuCategory")
+  public ResponseEntity<List<MenuItem>> findByMenuCategory(Long menuCategoryId) {
+    List<MenuItem> menuItems = new ArrayList<MenuItem>();
+    try{
+    menuItems = menuItemService.findByMenuCategory(menuCategoryId);
+    return new ResponseEntity<>(menuItems, HttpStatus.OK);}
+    catch (Exception e){
+      return new ResponseEntity<>(menuItems, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
