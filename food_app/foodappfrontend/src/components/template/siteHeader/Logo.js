@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
-
-
 import logo from '../../../assets/img/logo.png';
-
 export default class Logo extends Component {
 
     render() {
