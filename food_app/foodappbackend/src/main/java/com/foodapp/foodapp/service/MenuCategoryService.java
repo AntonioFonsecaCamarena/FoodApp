@@ -31,4 +31,12 @@ public class MenuCategoryService {
         return repository.save(menuCategory);
     }
 
+    public List<MenuCategory> findByUser() {
+        //TODO checar esto
+        Iterable<MenuCategory> categories = repository.findAll();
+        List<MenuCategory> list = new ArrayList<MenuCategory>();
+        categories.forEach(list::add);
+        return list;
+    }
+
 }

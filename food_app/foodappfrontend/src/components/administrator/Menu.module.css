@@ -1,0 +1,58 @@
+.menuCard {
+  width: 96%;
+  height: 120px;
+  margin: 2%;
+  box-shadow: 0 4px 8px 0 rgb(233, 230, 230);
+  transition: 0.3s;
+  border-radius: 15px;
+  flex-direction: row;
+  /* overflow: auto; */
+}
+
+.menuCard:hover {
+  box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+.menuContent {
+  /* padding: 2px 16px; */
+  /* text-align: right; */
+  /* float: right; */
+  background-color: black;
+  color: orange;
+}
+
+.menuImg {
+  /* height: 10%; */
+  width: 30%;
+  /* position: absolute; */
+  /* left: -5px; */
+  /* float: left; */
+  background: rgba(255, 238, 0, 0.2);
+  border-radius: 6%;
+  padding: 1px;
+}
+
+.Tittle {
+  /* font-family: "Roboto", sans-serif; */
+  /* font-weight: 70; */
+  /* color: #000; */
+  /* font-size: 15px; */
+}
+
+.Description {
+  /* font-family: "Roboto", sans-serif; */
+  /* font-weight: 70; */
+  /* color: rgb(19, 19, 19); */
+  /* font-size: 15px; */
+}
+
+.Price {
+  /* font-family: "Roboto", sans-serif; */
+  /* font-weight: 70; */
+  /* color: rgb(19, 19, 19); */
+  /* font-size: 15px; */
+}
+
+.fondo {
+  background-color: black;
+}

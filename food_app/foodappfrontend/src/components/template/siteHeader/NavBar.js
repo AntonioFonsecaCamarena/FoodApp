@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Link, NavLink } from 'react-router-dom';
+
 export default class NavBar extends Component {
 
     render() {
@@ -11,6 +13,11 @@ export default class NavBar extends Component {
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ml-auto">
+
+                        <NavLink  to='menu' >Menu</NavLink>
+                        
+                        <NavLink  to='myMenus' >Menu</NavLink>
+
                         <li className="nav-item active">
                             <a className="nav-link" href="/#">Mis Menus <span className="sr-only">(current)</span></a>
                         </li>

@@ -1,33 +1,11 @@
-import axios from 'axios'
+import axios from 'axios';
 
-const MENUITEM_URL = 'http://localhost:8080/menuItem/';
+const BASE_URL = 'http://localhost:8080/menuItem';
 
-class MenuItemService {
+const getMenuItemsbyUser = (user) => {
+    console.log('Menu Items Service');
+    console.log('getMenuItemsbyUser : ' + user);
+    return axios.get(BASE_URL + "/getMenuItemsbyUser");
+};
 
-    findById(id){
-       return axios.get(MENUITEM_URL+'findMenuItem', {
-            params: {
-                id: id
-            }
-        }).catch(error =>{
-            console.log(error + " - > The menu element: " + id + " is not found on the DB.")
-        });
-    }
-
-    getMenuItems(){
-        return axios.get(MENUITEM_URL+'list');
-    }
-
-    saveNewMenuItem(menuItemForm){
-       axios.post(MENUITEM_URL+'addMenuItem', menuItemForm)
-        .then(response =>{
-            alert('Saved');
-        }).catch(error =>{
-            alert('There was a problem, consult the logs');
-            console.log(error)
-        })
-    }
-
-}
-
-export default new MenuItemService();
+export const menuItemAPI = { getMenuItemsbyUser };

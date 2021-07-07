@@ -1,12 +1,27 @@
 import React, { Component } from 'react';
-import MenuService from '../../services/MenuService';
-// import Card from 'react-bootstrap/Card';
+// import {
+//     BrowserRouter as Router,
+//     Switch,
+//     Route,
+//     Link,
+//     useParams
+// } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import cellEditFactory from 'react-bootstrap-table2-editor';
+
+import MenuService from '../../services/MenuService';
+// import Card from 'react-bootstrap/Card';
+// import cellEditFactory from 'react-bootstrap-table2-editor';
+
 
 export default class MenusTblByUser extends Component {
+
+
+    defaultSorted = [{
+        dataField: 'id',
+        order: 'asc'
+    }];
 
     constructor(props) {
         super(props);
@@ -28,7 +43,8 @@ export default class MenusTblByUser extends Component {
             {
                 dataField: 'edit',
                 text: 'Editar',
-                sort: false
+                sort: false,
+                formatter: this.editFormatter,
             }],
 
             menus: []
@@ -44,7 +60,6 @@ export default class MenusTblByUser extends Component {
                         id: menu.id,
                         name: menu.name,
                         description: menu.description,
-                        edit: '**** ',
                     }));
                 this.setState({
                     menus: menus,
@@ -53,29 +68,37 @@ export default class MenusTblByUser extends Component {
         });
     }
 
-    defaultSorted = [{
-        dataField: 'id',
-        order: 'asc'
-    }];
+    editFormatter = (cell, row, rowIndex, formatExtraData) => {
+        console.log(row.id)
+        return (<Link
+            to={{
+                pathname: '/menu',
+                state: {
+                    id: row.id
+                }
+            }} > <Button>Editar</Button></ Link >);
+    };
 
-    beforeSaveCell(oldValue, newValue, row, column, done) {
-        setTimeout(() => {
-            if (!alert('¿Desdea conservar los cambios?')) {
-                done(true);
-            } else {
-                done(false);
-            }
-        }, 0);
-        return { async: true };
-    }
 
-    handleEdit() {
-        alert('Edit');
-    }
 
-    handleDelete() {
-        alert('Delete');
-    }
+    // beforeSaveCell(oldValue, newValue, row, column, done) {
+    //     setTimeout(() => {
+    //         if (!alert('¿Desdea conservar los cambios?')) {
+    //             done(true);
+    //         } else {
+    //             done(false);
+    //         }
+    //     }, 0);
+    //     return { async: true };
+    // }
+
+    // handleEdit() {
+    //     alert('Edit');
+    // }
+
+    // handleDelete() {
+    //     alert('Delete');
+    // }
 
     render() {
         return (<BootstrapTable keyField='id'
@@ -85,11 +108,11 @@ export default class MenusTblByUser extends Component {
             defaultSorted={this.defaultSorted}
             caption="Mis Menus"
             pagination={paginationFactory()}
-            cellEdit={cellEditFactory({
-                mode: 'click',
-                blurToSave: true,
-                beforeSaveCell: this.beforeSaveCell
-            })}
+            // cellEdit={cellEditFactory({
+            //     mode: 'click',
+            //     blurToSave: true,
+            //     beforeSaveCell: this.beforeSaveCell
+            // })}
             striped
             hover
             condensed />)

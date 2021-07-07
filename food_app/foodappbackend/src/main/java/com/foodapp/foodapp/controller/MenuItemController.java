@@ -68,4 +68,9 @@ public class MenuItemController {
     return new ResponseEntity<>("Not implemented yet :P!", HttpStatus.OK);
   }
 
+  @GetMapping(value = "/getMenuItemsbyUser")
+  public ResponseEntity<List <MenuItem>> getMenuItemsbyUser(Long id) {
+    return new ResponseEntity<List <MenuItem>>(menuItemService.list(), HttpStatus.OK);
+  }
+
 }

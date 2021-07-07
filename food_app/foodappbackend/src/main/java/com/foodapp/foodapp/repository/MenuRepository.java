@@ -12,4 +12,5 @@ public interface MenuRepository extends CrudRepository<Menu, Long> {
 
     public List<Menu> findByUserId(Long userId);
 
+
 }

@@ -42,6 +42,12 @@ public class MenuController {
     return new ResponseEntity<List<Menu>>(menus, HttpStatus.OK);
   }
 
+  @GetMapping(value = "/getMenuItemsByMenuId")
+  public ResponseEntity<List<Long>> getMenuItemsByMenuId(long menuId) {
+    List<Long> menuItemsId = menuService.getMenuItemsByMenuId(menuId);
+    return new ResponseEntity<List<Long>>(menuItemsId, HttpStatus.OK);
+  }
+
   // @GetMapping(value = "/addOrder")
   // public ResponseEntity<String> addOrder() {
   // //orderService.create(new Order(null, new ArrayList<>(), new User(null,
@@ -56,5 +62,12 @@ public class MenuController {
   // public ResponseEntity<String> deleteOrder(long id) {
   // return new ResponseEntity<>("Not implemented yet :P!", HttpStatus.OK);
   // }
+
+    @GetMapping(value = "/getMenubyUser")
+    public ResponseEntity<List<Menu>> getMenubyUser (Long user) {
+    List<Menu> menus = menuService.list();
+    return new ResponseEntity<List<Menu>>(menus, HttpStatus.OK);
+  }
+
 
 }

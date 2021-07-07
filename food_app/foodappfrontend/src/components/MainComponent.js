@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
+//import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Header from './template/siteHeader/Header';
+// import Header from './template/siteHeader/Header';
 // import Banner from './template/banner/Banner';
 // import About from './template/about/About';
 // import SpecialMenu from './template/specialMenu/SpecialMenu';
 // import Menu from './template/menu/Menu';
-// import Team from './template/team/Team';
+// i        mport Team from './template/team/Team';
 // import Gallery from './template/gallery/Gallery';
 // import Footer from './template/footer/Footer';
 // import MenuItemList from './template/menuItem/MenuItemList';
 // import Item from './template/menuItem/item';
 // import MenuCard from '../components/Menu/MenuCard';
-import MenuTblByUser from '../components/Menu/MenusTblByUser';
+// import MenuTblByUser from '../components/Menu/MenusTblByUser';
 
 // import '../assets/css/animate.min.css';
 // import '../assets/css/bootstrap-datetimepicker.css';
@@ -88,24 +89,29 @@ import MenuTblByUser from '../components/Menu/MenusTblByUser';
 // import '../assets/js/all.js';
 // import '../assets/js/custom.js'
 
+
+import AdministratorLanding from './administrator/AdministratorLanding';
+
 export class MainComponent extends Component {
 
     render() {
-        return (
-            <div>
-                <Header />
-                <MenuTblByUser/>
-                {/* <MenuCard/> */}
-                {/* <MenuItemList/> */}
-                {/* <Item/> */}
-                {/* <Banner /> */}
-                {/* <About /> */}
-                {/* <SpecialMenu /> */}
-                {/* <Menu/> */}
-                {/* <Team/> */}
-                {/* <Gallery/> */}
-                {/* <Footer/> */}
-            </div>
+        return (<AdministratorLanding />
+            // <Router>
+            //     <Header />
+            //     <Switch>
+            //         <Route component={MenuTblByUser} path='/myMenus' />
+            //         <Route component={MenuCard} path='/menu' />
+            //         {/* <MenuItemList/> */}
+            //         {/* <Item/> */}
+            //         {/* <Banner /> */}
+            //         {/* <About /> */}
+            //         {/* <SpecialMenu /> */}
+            //         {/* <Menu/> */}
+            //         {/* <Team/> */}
+            //         {/* <Gallery/> */}
+            //         {/* <Footer/> */}
+            //     </Switch>
+            // </Router>
 
         )
     }

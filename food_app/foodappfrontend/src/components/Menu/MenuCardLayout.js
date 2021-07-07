@@ -3,7 +3,7 @@ import MenuService from '../../services/MenuService';
 import Card from 'react-bootstrap/Card'
 // import CardColumns from 'react-bootstrap/CardColumns'
 
-export default class MenuCard extends Component {
+export default class MenuCardLayout extends Component {
 
 
     constructor(props) {
@@ -16,10 +16,8 @@ export default class MenuCard extends Component {
             // menuCategory: props.item.menuCategory,
             // show: true
         }
-
         console.log('card state')
         console.log(this.state)
-
     }
 
 
@@ -35,7 +33,7 @@ export default class MenuCard extends Component {
                     // menuItems: response.data.menuItems,
                     // show: true
                 })
-            } else { alert(this.state.id) }
+            } else {alert(this.state.id)}
         });
     }
 

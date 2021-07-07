@@ -1,11 +1,11 @@
 package com.foodapp.foodapp.controller;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import com.foodapp.foodapp.entity.MenuCategory;
-import com.foodapp.foodapp.entity.MenuItem;
+// import com.foodapp.foodapp.entity.MenuItem;
 import com.foodapp.foodapp.service.MenuCategoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,15 +43,20 @@ public class MenuCategoryController {
       return new ResponseEntity<List<MenuCategory>>(menuCategorys, HttpStatus.NO_CONTENT);
   }
 
-  @GetMapping(value = "/addMenuCategory")
-  public ResponseEntity<String> addMenuCategory() {
-    menuCategoryService.create(new MenuCategory(null, "name", "description", new ArrayList<MenuItem>()));
-    return new ResponseEntity<>("MenuCategory added!", HttpStatus.OK);
-  }
+  // @GetMapping(value = "/addMenuCategory")
+  // public ResponseEntity<String> addMenuCategory() {
+  //   menuCategoryService.create(new MenuCategory(null, "name", "description", new ArrayList<MenuItem>()));
+  //   return new ResponseEntity<>("MenuCategory added!", HttpStatus.OK);
+  // }
 
   @GetMapping(value = "/deleteMenuCategory")
   public ResponseEntity<String> deleteMenuCategory(long id) {
     return new ResponseEntity<>("Not implemented yet :P!", HttpStatus.OK);
+  }
+
+  @GetMapping(value ="/getMenuCategoriesbyUser")
+  public ResponseEntity<List<MenuCategory>> getMenuCategoriesbyUser (Long userId){
+    return new ResponseEntity<List<MenuCategory>>(menuCategoryService.findByUser(), HttpStatus.OK);
   }
 
 }

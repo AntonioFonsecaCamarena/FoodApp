@@ -31,6 +31,11 @@ public class MenuService {
         return repository.findByUserId(userId);
     }
 
+    public List<Long> getMenuItemsByMenuId(long userId){
+        System.out.println("user id " + userId);
+        return null;
+    }
+
     // public MenuItem create(Menu menu) {
     //     return repository.save(menu);
     // }
